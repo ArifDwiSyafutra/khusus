@@ -28,8 +28,8 @@ class UsersSeeder extends Seeder
         // membuat samplle admin
         $admin = new User();
         $admin->name = 'AdminLaraWeb';
-        $admin->email = 'adminganteng@gmail.com';
-        $admin->password = bcrypt('sarman');
+        $admin->email = 'arifdwi286@gmail.com';
+        $admin->password = bcrypt('smd210168');
         $admin->save();
         $admin->attachRole($adminRole);
 

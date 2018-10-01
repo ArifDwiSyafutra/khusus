@@ -45,7 +45,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+/*    protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
-
+*/
     /**
      * Create a new user instance after a valid registration.
      *
@@ -70,5 +70,17 @@ class RegisterController extends Controller
         $memberRole = Role::where('name','member')->first();
         $user->attachRole($memberRole);
         return $user;
+    }
+
+    protected function validator(array $data)
+
+    {
+
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
     }
 }

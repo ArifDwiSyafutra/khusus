@@ -26,6 +26,7 @@ class BorrowLog extends Model
 	{
 		return $query->where('is_returned', 1);
 	}
+	
 	public function scopeBorrowed($query)
 	{
 		return $query->where('is_returned', 0);
