@@ -30,14 +30,17 @@ class UsersSeeder extends Seeder
         $admin->name = 'AdminLaraWeb';
         $admin->email = 'arifdwi286@gmail.com';
         $admin->password = bcrypt('smd210168');
+        $admin->is_verified = 1;
         $admin->save();
         $admin->attachRole($adminRole);
+
 
         // Membur sampple Member
         $member = new User();
         $member->name = 'Rizky';
-        $member->email = 'rizkyMember@gmail.com';
-        $member->password=bcrypt('rizky');
+        $member->email = 'scnhyti@gmail.com';
+        $member->password=bcrypt('member');
+         $member->is_verified = 1;
         $member->save();
         $member->attachRole($memberRole);
 

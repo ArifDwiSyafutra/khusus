@@ -9,6 +9,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 use App\Book;
 use App\BorrowLog;
 use App\Exceptions\BookException;
+use Illuminate\Support\Facades\Mail;
 
 
 class User extends Authenticatable
@@ -62,4 +63,24 @@ class User extends Authenticatable
     public function borrowLog(){
         return $this->hasMany('App\BorrowLog');
     }
+
+    protected $casts = [
+        'is_verified' => 'boolean',
+    ];
+
+    public function sendVerification(){
+
+        $user = $this;
+        $token = str_random(40);
+        $user->verification_token = $token;
+        $user->save();
+        Mail::send('auth.emails.verification', compact('user', 'token'), function($m) use ($user){
+
+
+            $m->to($user->email, $user->name)-> subject('Verifilasi Akun WebLara');
+        });
+    }
+
+    
+
 }

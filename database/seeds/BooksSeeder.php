@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Database\Seeder;
 use App\Author;
@@ -26,7 +26,7 @@ class BooksSeeder extends Seeder
         $book3 = Book::create(['title'=>'Ada Apa dengan Julak','amount'=>4,'author_id'=>$author3->id]);
 
         //  SAMPLE PEMINJAMAN BUKU
-        $member = User::where('email','rizkymember@gmail.com')->first();
+        $member = User::where('email','scnhyti@gmail.com')->first();
         BorrowLog::create(['user_id' => $member->id, 'book_id' => $book1->id, 'is_returned'=> 0]);
         BorrowLog::create(['user_id' => $member->id, 'book_id' => $book2->id, 'is_returned'=> 0]);
         BorrowLog::create(['user_id' => $member->id, 'book_id' => $book3->id, 'is_returned'=> 1]);

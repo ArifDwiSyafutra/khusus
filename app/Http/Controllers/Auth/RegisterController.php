@@ -37,6 +37,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('user-should-verified');
     }
 
     /**
@@ -69,6 +70,7 @@ class RegisterController extends Controller
         ]);
         $memberRole = Role::where('name','member')->first();
         $user->attachRole($memberRole);
+        $user->sendVerification();
         return $user;
     }
 
@@ -83,4 +85,8 @@ class RegisterController extends Controller
             'g-recaptcha-response' => 'required|captcha',
         ]);
     }
+
+    
+
+    public function verify(Request $request, $token) { }
 }
